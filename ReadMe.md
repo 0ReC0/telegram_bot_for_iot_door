@@ -11,6 +11,10 @@
     ```python
     TOKEN = 'token of your bot'
     API_STR = "cloud api for interaction with door"
-
+    DEVICE_ID = "id device which you want to interact with"
+    USER_ACCOUNT = {
+        "username": "email",
+        "password": "password"
+    }
     ```
 3. Run bot.py
