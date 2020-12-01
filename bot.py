@@ -6,11 +6,11 @@ from aiogram.types import ParseMode
 from aiogram.utils import executor
 from aiogram.utils.markdown import text
 
-from config import TOKEN
+from config import TELEGRAM_BOT_TOKEN
 import keyboards as kb
 import http_service
 
-bot = Bot(token=TOKEN)
+bot = Bot(token=TELEGRAM_BOT_TOKEN)
 dp = Dispatcher(bot)
 
 polling_task = None
