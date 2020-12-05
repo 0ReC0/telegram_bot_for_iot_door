@@ -23,7 +23,7 @@ async def get_door_state(user_id):
         if serv_answer.status_code == requests.codes.ok:
             state = int(serv_answer.json()['doorOpen'][0]['value'])
             state_str = "открыта" if state else "закрыта"
-            message_to_user = f"Вашей дверь: **{state_str}**"
+            message_to_user = f"Ваша дверь: **{state_str}**"
         else:
             message_to_user = "**Нет** ответа от сервера при получении статуса"
         return message_to_user
