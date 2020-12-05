@@ -1,6 +1,7 @@
 import requests
 from config import API_STR, DEVICE_ID, USER_ACCOUNT, ACCESS_TOKEN
 import json
+import time
 
 
 async def init_user():
@@ -32,13 +33,14 @@ async def get_door_state(user_id):
 
 async def close_door(user_id):
     try:
-        data = {'doorOpen': 0}
+        data = {'doorState': 0}
         data = json.dumps(data)
         serv_answer = requests.post(API_STR
-                                    + f"v1/{ACCESS_TOKEN}/telemetry",
+                                    + f"v1/{ACCESS_TOKEN}/attributes",
                                     data=data)
 
         if serv_answer.status_code == requests.codes.ok:
+            time.sleep(3)
             door_state = await get_door_state(user_id)
             message_to_user = "Состояние двери обновлено \n" + door_state
         else:
@@ -50,12 +52,13 @@ async def close_door(user_id):
 
 async def open_door(user_id):
     try:
-        data = {'doorOpen': 1}
+        data = {'doorState': 1}
         data = json.dumps(data)
         serv_answer = requests.post(API_STR
-                                    + f"v1/{ACCESS_TOKEN}/telemetry",
+                                    + f"v1/{ACCESS_TOKEN}/attributes",
                                     data=data)
         if serv_answer.status_code == requests.codes.ok:
+            time.sleep(3)
             door_state = await get_door_state(user_id)
             message_to_user = "Состояние двери обновлено \n" + door_state
         else:
